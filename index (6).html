@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173f35">
+<title>Quiz CIPA | Sua voz, nosso bem-estar</title>
+<style>
+:root{--green:#173f35;--green2:#216a55;--mint:#d8efdf;--cream:#f5f3ec;--ink:#203b33;--muted:#63756d;--white:#fff;--line:#dbe4dd;--gold:#e9c46a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);line-height:1.5}
+button{font:inherit;cursor:pointer}.shell{max-width:940px;margin:0 auto;padding:24px 18px 42px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--green);font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}.brand{display:flex;align-items:center;gap:10px}.brand-mark{width:38px;height:38px;border-radius:12px;background:var(--green);color:white;display:grid;place-items:center;font-size:1.2rem}.tag{border:1px solid #c7d9cc;border-radius:999px;padding:7px 12px;letter-spacing:0;font-size:.72rem}
+.hero{background:var(--green);color:white;border-radius:26px;padding:clamp(26px,6vw,58px);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #ffffff25;border-radius:50%;right:-85px;top:-100px;box-shadow:0 0 0 35px #ffffff0b,0 0 0 70px #ffffff08}.eyebrow{color:var(--mint);font-size:.75rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.hero h1{font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.02;letter-spacing:-.045em;max-width:660px;margin:18px 0}.hero p{max-width:560px;color:#e0ece5;font-size:1.08rem;margin:0 0 25px}.hero-foot{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:#d6e7dc;font-size:.88rem}.pill{display:inline-flex;gap:7px;align-items:center;border-radius:999px;background:#ffffff14;border:1px solid #ffffff25;padding:8px 12px}.hero .btn{background:var(--mint);color:var(--green)}
+.btn{border:0;border-radius:13px;padding:14px 19px;font-weight:800;transition:transform .15s,opacity .15s;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn:hover{transform:translateY(-1px)}.btn:focus-visible,.option:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.btn-primary{background:var(--green);color:white}.btn-secondary{background:white;color:var(--green);border:1px solid var(--line)}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.intro-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin:18px 0 28px}.info-card{background:white;border:1px solid var(--line);border-radius:20px;padding:23px}.info-card h2{margin:0 0 8px;font-size:1.1rem}.info-card p{margin:0;color:var(--muted);font-size:.94rem}.mini-list{display:flex;flex-direction:column;gap:11px}.mini-item{display:flex;align-items:center;gap:10px;font-size:.9rem}.mini-icon{width:31px;height:31px;border-radius:10px;background:#e6f2e9;display:grid;place-items:center;flex-shrink:0}
+.quiz-panel{display:none;background:white;border:1px solid var(--line);border-radius:24px;padding:clamp(20px,4vw,38px);box-shadow:0 12px 35px #173f3509}.quiz-panel.active{display:block}.quiz-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.question-number{color:var(--green2);font-weight:850;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em}.counter{font-size:.82rem;color:var(--muted)}.progress{height:7px;background:#e9eee9;border-radius:99px;overflow:hidden;margin-bottom:27px}.progress-fill{height:100%;width:0;background:var(--green2);transition:width .25s}.question{font-size:clamp(1.35rem,3.5vw,2rem);letter-spacing:-.025em;line-height:1.18;margin:0 0 22px}.options{display:grid;gap:11px}.option{width:100%;border:1.5px solid var(--line);border-radius:15px;background:#fff;padding:15px;display:flex;align-items:flex-start;gap:13px;text-align:left;color:var(--ink);transition:border-color .15s,background .15s}.option:hover{border-color:#94b9a2;background:#f9fcf9}.option.selected{border-color:var(--green2);background:#edf6ef;box-shadow:inset 0 0 0 1px var(--green2)}.letter{flex:0 0 30px;height:30px;border-radius:9px;background:#f0f2ed;display:grid;place-items:center;font-size:.82rem;font-weight:850;color:var(--green)}.option.selected .letter{background:var(--green2);color:white}.option-text{padding-top:3px;font-size:.96rem}.quiz-actions{display:flex;justify-content:space-between;gap:12px;margin-top:25px}.quiz-actions .btn{min-width:125px}.result-panel{display:none;background:white;border:1px solid var(--line);border-radius:24px;padding:clamp(24px,5vw,45px);text-align:center}.result-panel.active{display:block}.result-icon{width:76px;height:76px;border-radius:24px;background:var(--mint);display:grid;place-items:center;margin:0 auto 17px;font-size:2.1rem}.result-panel h2{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.08;letter-spacing:-.035em;margin:10px auto;max-width:600px}.score{font-size:1rem;color:var(--muted);margin-bottom:20px}.score strong{color:var(--green);font-size:1.4rem}.result-copy{max-width:650px;margin:0 auto 25px;color:var(--muted)}.review{text-align:left;display:grid;gap:12px;margin:25px 0}.review-item{border:1px solid var(--line);border-radius:15px;padding:16px}.review-item h3{font-size:.96rem;margin:0 0 7px}.review-item p{margin:0;color:var(--muted);font-size:.9rem}.correct-label{font-size:.72rem;font-weight:850;letter-spacing:.06em;color:var(--green2);text-transform:uppercase;margin-bottom:5px}.campaign-cta{background:var(--green);color:white;text-align:left;padding:clamp(22px,4vw,34px);border-radius:20px;margin-top:24px}.campaign-cta h3{font-size:1.5rem;line-height:1.15;margin:0 0 9px}.campaign-cta p{color:#e0ece5;margin:0 0 20px;max-width:620px}.campaign-cta .btn{background:var(--mint);color:var(--green)}.foot{text-align:center;color:var(--muted);font-size:.78rem;margin:24px auto 0;max-width:690px}.hidden{display:none!important}
+@media(max-width:650px){.shell{padding:14px 12px 28px}.topbar{align-items:flex-start}.tag{max-width:135px;text-align:center}.intro-grid{grid-template-columns:1fr}.hero{border-radius:20px}.quiz-panel,.result-panel{border-radius:20px}.quiz-actions .btn{flex:1;min-width:0}.hero-foot{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark" aria-hidden="true">✳</div><div>CIPA <span style="opacity:.5">/</span> Senac-MT</div></div>
+    <div class="tag">Quiz de segurança no trabalho</div>
+  </header>
+
+  <section class="hero" id="intro">
+    <div class="eyebrow">Um desafio rápido para você</div>
+    <h1>Você manda bem quando o assunto é segurança no trabalho?</h1>
+    <p>Teste seus conhecimentos em 5 perguntas e descubra como pequenas atitudes podem contribuir para um ambiente mais seguro e saudável.</p>
+    <button class="btn" id="startBtn">Começar o desafio <span aria-hidden="true">→</span></button>
+    <div class="hero-foot" style="margin-top:22px">
+      <span class="pill">◷ 2 minutos</span><span class="pill">✓ 5 perguntas</span><span class="pill">♡ Aprenda algo novo</span>
+    </div>
+  </section>
+
+  <section class="intro-grid" id="introGrid">
+    <article class="info-card">
+      <h2>Prevenção começa com informação.</h2>
+      <p>Segurança no trabalho vai além de evitar acidentes: também envolve ergonomia, saúde mental, respeito e participação de todos.</p>
+    </article>
+    <article class="info-card">
+      <div class="mini-list">
+        <div class="mini-item"><span class="mini-icon">🛡️</span>Reconheça situações de risco</div>
+        <div class="mini-item"><span class="mini-icon">🧠</span>Reforce seus conhecimentos</div>
+        <div class="mini-item"><span class="mini-icon">💚</span>Ajude a construir um ambiente melhor</div>
+      </div>
+    </article>
+  </section>
+
+  <section class="quiz-panel" id="quiz" aria-live="polite">
+    <div class="quiz-top"><div class="question-number" id="questionNumber">Pergunta 1</div><div class="counter" id="counter">1 de 5</div></div>
+    <div class="progress" aria-label="Progresso do quiz"><div class="progress-fill" id="progressFill"></div></div>
+    <h2 class="question" id="questionText"></h2>
+    <div class="options" id="options"></div>
+    <div class="quiz-actions"><button class="btn btn-secondary" id="backBtn">← Voltar</button><button class="btn btn-primary" id="nextBtn" disabled>Próxima →</button></div>
+  </section>
+
+  <section class="result-panel" id="result" aria-live="polite">
+    <div class="result-icon" id="resultIcon">🌱</div>
+    <div class="eyebrow" style="color:var(--green2)">Desafio concluído</div>
+    <h2 id="resultTitle">Seu resultado</h2>
+    <div class="score" id="scoreText"></div>
+    <p class="result-copy" id="resultCopy"></p>
+    <div class="review" id="review"></div>
+    <div class="campaign-cta">
+      <div class="eyebrow">CIPA • SENAC-MT</div>
+      <h3>Sua voz, nosso bem-estar.</h3>
+      <p>Quero contribuir para fortalecer a prevenção, a saúde mental e o bem-estar dos colaboradores, valorizando a escuta, o diálogo e o acompanhamento das melhorias.</p>
+      <a class="btn" id="proposalsLink" href="#propostas">Conheça minhas propostas <span aria-hidden="true">→</span></a>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px">
+      <button class="btn btn-secondary" id="restartBtn">Refazer o quiz</button>
+      <button class="btn btn-primary" id="shareBtn">Compartilhar resultado ↗</button>
+    </div>
+  </section>
+
+  <section class="info-card hidden" id="propostas" style="margin-top:18px">
+    <h2>Minhas prioridades para a CIPA</h2>
+    <div class="mini-list" style="margin-top:15px">
+      <div class="mini-item"><span class="mini-icon">💬</span><span><strong>Escuta ativa:</strong> dar espaço para sugestões e acompanhar encaminhamentos.</span></div>
+      <div class="mini-item"><span class="mini-icon">🧠</span><span><strong>Saúde mental:</strong> fortalecer a prevenção de riscos psicossociais relacionados ao trabalho.</span></div>
+      <div class="mini-item"><span class="mini-icon">🤝</span><span><strong>Respeito:</strong> promover conscientização sobre assédio e relações saudáveis.</span></div>
+      <div class="mini-item"><span class="mini-icon">🛡️</span><span><strong>Prevenção:</strong> incentivar a identificação de riscos e melhorias no ambiente de trabalho.</span></div>
+    </div>
+    <p style="margin-top:18px;color:var(--muted);font-size:.9rem">As propostas são compromissos de atuação e dependem das atribuições da CIPA, das avaliações técnicas e dos encaminhamentos institucionais.</p>
+  </section>
+
+  <footer class="foot">Conteúdo educativo. Em situações reais de risco, siga os procedimentos de segurança da instituição e comunique a área responsável. Este quiz é uma iniciativa de conscientização da campanha para a CIPA.</footer>
+</main>
+<script>
+const questions = [
+ {q:"Você identifica um fio elétrico danificado no ambiente de trabalho. O que faz?", options:["Evito o contato, sinalizo o risco e comunico o responsável.","Tento ajeitar o fio por conta própria.","Ignoro, desde que o equipamento ainda funcione."], correct:0, explanation:"Não toque nem tente reparar. Afaste as pessoas do risco e comunique a área responsável."},
+ {q:"Passar muitas horas sentado, em uma posição inadequada, pode prejudicar a saúde?", options:["Não, desde que eu não sinta dor.","Sim. Ergonomia, ajustes do posto e pausas adequadas são importantes.","Só prejudica quem realiza atividades físicas."], correct:1, explanation:"A ergonomia considera a atividade, o mobiliário, a organização do trabalho e as necessidades de cada pessoa."},
+ {q:"A sobrecarga constante e a pressão no trabalho podem ser relevantes para a prevenção?", options:["Não. Estresse é sempre um problema exclusivamente pessoal.","Sim. Fatores psicossociais relacionados ao trabalho também precisam ser considerados.","Só importam quando alguém precisa se afastar."], correct:1, explanation:"Sobrecarga e pressão excessiva podem ser fatores de risco psicossociais relacionados ao trabalho e merecem atenção preventiva."},
+ {q:"Você presencia uma situação de assédio no trabalho. Qual atitude é mais adequada?", options:["Não fazer nada, porque não aconteceu comigo.","Expor a situação nas redes sociais imediatamente.","Buscar orientação e utilizar os canais institucionais apropriados, considerando a segurança de quem foi afetado."], correct:2, explanation:"Respeitar a privacidade, buscar orientação e utilizar canais apropriados ajuda a encaminhar a situação com responsabilidade."},
+ {q:"Qual é o papel dos colaboradores na prevenção de acidentes e doenças relacionadas ao trabalho?", options:["A prevenção é responsabilidade exclusiva da CIPA.","Identificar e comunicar riscos, seguir orientações de segurança e colaborar com as ações preventivas.","Só comunicar um risco depois que ocorrer um acidente."], correct:1, explanation:"A prevenção é construída coletivamente. A instituição, a CIPA e os trabalhadores têm responsabilidades distintas e complementares."}
+];
+let current=0, answers=Array(questions.length).fill(null);
+const $=id=>document.getElementById(id);
+function showQuiz(){ $('intro').classList.add('hidden'); $('introGrid').classList.add('hidden'); $('result').classList.remove('active'); $('quiz').classList.add('active'); renderQuestion(); $('quiz').scrollIntoView({behavior:'smooth',block:'start'}); }
+function renderQuestion(){
+ const q=questions[current]; $('questionNumber').textContent=`Pergunta ${current+1}`; $('counter').textContent=`${current+1} de ${questions.length}`; $('progressFill').style.width=`${(current+1)/questions.length*100}%`; $('questionText').textContent=q.q;
+ const opts=$('options'); opts.innerHTML='';
+ q.options.forEach((text,i)=>{const b=document.createElement('button');b.type='button';b.className='option'+(answers[current]===i?' selected':'');b.setAttribute('aria-pressed',answers[current]===i?'true':'false');const letter=document.createElement('span');letter.className='letter';letter.textContent=String.fromCharCode(65+i);const t=document.createElement('span');t.className='option-text';t.textContent=text;b.append(letter,t);b.addEventListener('click',()=>{answers[current]=i;renderQuestion()});opts.appendChild(b)});
+ $('backBtn').disabled=current===0; $('nextBtn').disabled=answers[current]===null; $('nextBtn').textContent=current===questions.length-1?'Ver meu resultado ✓':'Próxima →';
+}
+function showResult(){
+ $('quiz').classList.remove('active');$('result').classList.add('active');
+ const score=questions.reduce((n,q,i)=>n+(answers[i]===q.correct?1:0),0);
+ $('scoreText').innerHTML=`Você acertou <strong>${score} de ${questions.length}</strong> perguntas`;
+ let title,copy,icon;
+ if(score===5){title='Mandou muito bem!';copy='Você demonstrou bons conhecimentos sobre prevenção e segurança. Continue compartilhando informação e incentivando atitudes preventivas.';icon='🏆'}
+ else if(score>=3){title='Você está no caminho certo!';copy='Você já tem uma boa base. Confira as explicações abaixo para reforçar seus conhecimentos e reconhecer oportunidades de prevenção.';icon='🌿'}
+ else{title='Aprender também é prevenir.';copy='O quiz é uma oportunidade para descobrir algo novo. Confira as explicações e continue desenvolvendo seu olhar preventivo.';icon='🌱'}
+ $('resultTitle').textContent=title;$('resultCopy').textContent=copy;$('resultIcon').textContent=icon;
+ const review=$('review');review.innerHTML='';
+ questions.forEach((q,i)=>{const card=document.createElement('article');card.className='review-item';const label=document.createElement('div');label.className='correct-label';label.textContent=answers[i]===q.correct?'✓ Resposta correta':'Resposta correta: '+String.fromCharCode(65+q.correct);const h=document.createElement('h3');h.textContent=`${i+1}. ${q.q}`;const p=document.createElement('p');p.textContent=q.explanation;card.append(label,h,p);review.append(card)});
+ $('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('startBtn').addEventListener('click',showQuiz);
+$('backBtn').addEventListener('click',()=>{if(current>0){current--;renderQuestion()}});
+$('nextBtn').addEventListener('click',()=>{if(answers[current]===null)return;if(current<questions.length-1){current++;renderQuestion()}else showResult()});
+$('restartBtn').addEventListener('click',()=>{current=0;answers=Array(questions.length).fill(null);showQuiz()});
+$('shareBtn').addEventListener('click',async()=>{const score=questions.reduce((n,q,i)=>n+(answers[i]===q.correct?1:0),0);const msg=`Fiz o Quiz CIPA Senac-MT e acertei ${score} de ${questions.length} perguntas! Segurança no trabalho começa com informação. Sua voz, nosso bem-estar.`;try{if(navigator.share){await navigator.share({title:'Quiz CIPA Senac-MT',text:msg})}else if(navigator.clipboard){await navigator.clipboard.writeText(msg);$('shareBtn').textContent='Resultado copiado ✓'}else{window.prompt('Copie sua mensagem:',msg)}}catch(e){}});
+$('proposalsLink').addEventListener('click',e=>{e.preventDefault();$('propostas').classList.remove('hidden');$('propostas').scrollIntoView({behavior:'smooth',block:'start'})});
+</script>
+</body>
+</html>
